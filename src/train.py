@@ -1,5 +1,4 @@
 import torch
-
 from dataloaders.get_loaders import get_loaders
 from models.get_models import get_models
 from trainers.get_trainers import get_trainers
@@ -31,7 +30,7 @@ def main(config):
     y_true_record, y_score_record = trainer.train(train_loader, test_loader)
 
     #7. model 기록 저장 위치
-    model_path = './train_model_records/' + config.model_fn
+    model_path = '../model_records/' + config.model_fn
 
     #8. model 기록
     torch.save({
