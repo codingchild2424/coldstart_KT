@@ -4,7 +4,7 @@ import numpy as np
 import torch
 
 from torch.nn import Module, Parameter, Embedding, Linear
-from torch.nn.init import kaimiing_normal_
+from torch.nn.init import kaiming_normal_
 from torch.nn.functional import binary_cross_entropy
 from sklearn import metrics
 
@@ -37,8 +37,8 @@ class DKVMN(Module):
             torch.Tensor(self.size_m, self.dim_s)
         )
 
-        kaimiing_normal_(self.Mk)
-        kaimiing_normal_(self.Mv0)
+        kaiming_normal_(self.Mk)
+        kaiming_normal_(self.Mv0)
 
         self.v_emb_layer = Embedding(self.num_q * 2, self.dim_s) #여기는 (q, r)이 동시에 들어오므로, embedding vector가 두배
 

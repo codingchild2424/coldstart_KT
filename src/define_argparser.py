@@ -26,9 +26,7 @@ def define_argparser():
     #dkvmn argument
     p.add_argument('--dkvmn_dim_s', type=int, default = 50)
     p.add_argument('--dkvmn_size_m', type=int, default = 20)
-
-    #dkvmn argument
-
+    
     #sakt argument
 
     #saint argument

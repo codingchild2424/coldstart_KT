@@ -41,8 +41,18 @@ class DKVMN_trainer():
             one_hot_vectors = one_hot(qshft_seqs.long(), self.num_q) #|one_hot_vectors| = (bs, sq, self.num_q) -> tensor([[[0, 0, 0,  ..., 0, 0, 0], [0, 0, 0,  ..., 0, 0, 0], [0, 0, 0,  ..., 0, 0, 0],..], [[]])
             #=> qshft는 한칸뒤의 벡터임, 각 seqeunce 별로 웟핫 벡터를 순서대로 만듦
 
+
+            print("-------------")
+            print(y_hat)
+            print("--------------")
+
             y_hat = ( y_hat * one_hot_vectors ).sum(-1) #|y_hat| = (bs, sq) -> tensor([[0.5711, 0.7497, 0.8459,  ..., 0.6606, 0.6639, 0.6702], [0.5721, 0.6495, 0.6956,  ..., 0.6677, 0.6687, 0.6629],
             #=> 각 문항별 확률값만 추출해서 담고, 차원을 축소함
+
+            """
+            위 코드에서 error
+            TypeError: only integer tensors of a single element can be converted to an index
+            """
 
             y_hat = torch.masked_select(y_hat, mask_seqs) #|y_hat| = () -> tensor([0.7782, 0.8887, 0.7638,  ..., 0.8772, 0.8706, 0.8831])
             #=> mask를 활용해서 각 sq 중 실제로 문제를 푼 경우의 확률값만 추출
