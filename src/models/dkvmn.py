@@ -21,10 +21,18 @@ class DKVMN(Module):
         self.dim_s = dim_s
         self.size_m = size_m
 
-        self.k_emb_layer = Embedding(self.num_q, self.dim_s)
+        self.k_emb_layer = Embedding(self.num_q, self.dim_s) #여기는 q값만 들어오므로, embedding vector의 갯수가 문항수와 동일함
+        
+        #Mk: Key Matrix로 N개의 Latent Concept(C1, ..., CN)을 인코딩하는 행렬
+        #모델의 추론 과정에서 시간과 관계없이 변하지 않는 Static한 메모리
         self.Mk = Parameter(
             torch.Tensor(self.size_m, self.dim_s)
         )
+
+        #Mvt의 초깃값으로 추측됨
+        #해당값은 Value Matrix로 (dv, N)의 크기를 가지고 있고
+        #N개의 Latent Concept(C1, ..., CN) 각각에 대한 사용자의 Concept State(s1, ..., sN)을 인코딩하고 있음
+        #dynamic하게 변화하는 값
         self.Mv0 = Parameter(
             torch.Tensor(self.size_m, self.dim_s)
         )
@@ -32,16 +40,19 @@ class DKVMN(Module):
         kaimiing_normal_(self.Mk)
         kaimiing_normal_(self.Mv0)
 
-        self.v_emb_layer = Embedding(self.num_q * 2, self.dim_s)
+        self.v_emb_layer = Embedding(self.num_q * 2, self.dim_s) #여기는 (q, r)이 동시에 들어오므로, embedding vector가 두배
 
+        #read 과정에서 사용
         self.f_layer = Linear(self.dim_s * 2, self.dim_s)
         self.p_layer = Linear(self.dim_s, 1)
 
+        #write 과정에서 사용
         self.e_layer = Linear(self.dim_s, self.dim_s)
         self.a_layer = Linear(self.dim_s, self.dim_s)
 
     def forward(self, q, r):
         
+        # 문항과 문제 번호에 따라서 값을 줌
         x = q + self.num_q * r
 
         batch_size = x.shape[0]

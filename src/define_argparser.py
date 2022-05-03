@@ -23,12 +23,9 @@ def define_argparser():
     p.add_argument('--dkt_emb_size', type=int, default = 100)
     p.add_argument('--dkt_hidden_size', type=int, default = 100)
 
-    #dkt+ argument
-    p.add_argument('--dkt_plus_emb_size', type=int, default = 100)
-    p.add_argument('--dkt_plus_hidden_size', type=int, default = 100)
-    p.add_argument('--dkt_plus_lambda_r', type=int, default = 0.01)
-    p.add_argument('--dkt_plus_lambda_w1', type=int, default = 0.003)
-    p.add_argument('--dkt_plus_lambda_w2', type=int, default = 3.0)
+    #dkvmn argument
+    p.add_argument('--dkvmn_dim_s', type=int, default = 50)
+    p.add_argument('--dkvmn_size_m', type=int, default = 20)
 
     #dkvmn argument
 
