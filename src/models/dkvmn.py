@@ -18,8 +18,8 @@ class DKVMN(Module):
     def __init__(self, num_q, dim_s, size_m):
         super().__init__()
         self.num_q = num_q
-        self.dim_s = dim_s
-        self.size_m = size_m
+        self.dim_s = dim_s #default = 50
+        self.size_m = size_m #default = 20
 
         self.k_emb_layer = Embedding(self.num_q, self.dim_s) #여기는 q값만 들어오므로, embedding vector의 갯수가 문항수와 동일함
         

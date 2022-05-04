@@ -6,7 +6,7 @@ import numpy as np
 
 def personal_pred_visualizer(model, model_path, test_loader, device, img_name):
 
-    img_path = './imgs/' + img_name + '_persoanl_pred'
+    img_path = '../imgs/personal_pred/' + img_name + '_persoanl_pred'
 
     model = model
     checkpoint = torch.load(model_path)
@@ -34,6 +34,10 @@ def personal_pred_visualizer(model, model_path, test_loader, device, img_name):
             masked_unsqueeze_r_seqs = torch.unsqueeze(masked_r_seqs, 0)
 
             y_hat = model( masked_unsqueeze_q_seqs.long(), masked_unsqueeze_r_seqs.long() )
+
+            print("-----------")
+            print(y_hat)
+            print("-----------")
 
             pred = y_hat[0, :, :].detach().cpu().numpy()
         

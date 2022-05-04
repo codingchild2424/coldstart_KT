@@ -3,7 +3,7 @@ from sklearn.metrics import roc_curve
 
 def roc_curve_visualizer(y_true_record, y_score_record, img_name):
 
-    img_path = './imgs/' + img_name + '_roc_curve'
+    img_path = '../imgs/roc_auc/' + img_name + '_roc_curve'
 
     y_true, y_score = y_true_record, y_score_record
 
