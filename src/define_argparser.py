@@ -28,6 +28,9 @@ def define_argparser():
     p.add_argument('--dkvmn_size_m', type=int, default = 20)
     
     #sakt argument
+    p.add_argument('--sakt_n', type=int, default=100)
+    p.add_argument('--sakt_d', type=int, default=100)
+    p.add_argument('--sakt_num_attn_heads', type=int, default=5)
 
     #saint argument
 

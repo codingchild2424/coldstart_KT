@@ -56,6 +56,7 @@ def dkt_personal_pred_visualizer(model, model_path, test_loader, device, img_nam
             #반복못하도록 한번만 돌리기
             break
 
+#작업 중
 def dkvmn_personal_pred_visualizer(model, model_path, test_loader, device, img_name):
 
     img_path = '../imgs/personal_pred/' + img_name + '_persoanl_pred'

@@ -10,4 +10,5 @@ def get_visualizers(y_true_record, y_score_record,model, model_path, test_loader
         dkt_personal_pred_visualizer(model, model_path, test_loader, device, config.model_name)
     elif config.model_name == "dkvmn":
         roc_curve_visualizer(y_true_record, y_score_record, config.model_name)
-        dkvmn_personal_pred_visualizer(model, model_path, test_loader, device, config.model_name)
+        #작업 중
+        #dkvmn_personal_pred_visualizer(model, model_path, test_loader, device, config.model_name)
