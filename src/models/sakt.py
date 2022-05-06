@@ -4,19 +4,20 @@ from torch.nn import Module, Parameter, Embedding, \
 from torch.nn.init import kaiming_normal_
 
 class SAKT(Module):
-    def __init__(self, num_q, n, d, num_attn_heads, dropout=.2):
+    def __init__(self, num_q, n, d, num_attn_heads, device, dropout=.2): #device를 추가함
         super().__init__()
         self.num_q = num_q #문항의 갯수
         self.n = n #length of the sequence of questions and responses
         self.d = d #dimension of the hidden vectors in this model
         self.num_attn_heads = num_attn_heads #the number of the attention heads in the multi-head attention
         self.dropout = dropout
+        self.device = device
 
+        #self.M은 1~(T-1)번째 문제(x_t = (e_t, r_t)) 반응에 대한 embedding이므로, 
+        #정답과 오답을 고려하여 문항*2만큼의 embedding vector로 구성됨
         self.M = Embedding(self.num_q * 2, self.d)
-        self.E = Embedding(self.num_q, d)
-        self.P = Parameter(torch.Tensor(self.n, self.d))
-
-        kaiming_normal_(self.P)
+        #self.E는 T번째 문제(e_t)에 대한 embedding이므로, 문항 갯수만큼의 embedding vector로 구성됨
+        self.E = Embedding(self.num_q, self.d)
 
         self.attn = MultiheadAttention(
             self.d, self.num_attn_heads, dropout = self.dropout
@@ -46,13 +47,23 @@ class SAKT(Module):
 
         M = self.M(x).permute(1, 0, 2) #|M| = (sq, bs, d)
         E = self.E(qry).permute(1, 0, 2) #|E| = (sq, bs, d)
-        P = self.P.unsqueeze(1) #|P| = (n, 1, d)
 
+        #형상 때문에 instance로 생성하지 않고 직접 불러옴
+        #|P| = (sq, d)
+        P = Parameter( 
+                torch.Tensor( 
+                    M.size(0), #sq로 형상을 맞춤
+                    self.d 
+                )
+            ).to(self.device) #device에 올려줌 / 처음 생성하는 것이 아니면 device가 다름
+        kaiming_normal_(P)
+        P = P.unsqueeze(1) #|P| = (sq, 1, d)
+
+        #|causal_mask| = (sq, sq)
         causal_mask = torch.triu(
             torch.ones([ E.shape[0], M.shape[0] ]), diagonal = 1
-        ).bool()
+        ).bool().to(self.device)
 
-        #여기서 형상이 안맞는 오류 발생
         M = M + P
 
         S, attn_weights = self.attn(E, M, M, attn_mask = causal_mask)
@@ -61,7 +72,7 @@ class SAKT(Module):
         M = M.permute(1, 0, 2)
         E = E.permute(1, 0, 2)
 
-        S = self.atten_layer_norm(S + M + E)
+        S = self.attn_layer_norm(S + M + E)
 
         F = self.FFN(S)
         F = self.FFN_layer_norm(F + S)

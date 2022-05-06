@@ -21,7 +21,8 @@ def get_models(num_q, device, config):
             num_q = num_q,
             n = config.sakt_n, #default = 100
             d = config.sakt_d, #default = 100
-            num_attn_heads = config.sakt_num_attn_heads #default = 5
+            num_attn_heads = config.sakt_num_attn_heads, #default = 5
+            device = device #어쩔 수 없이 추가 ㅜㅜ
         ).to(device)
     #-> 추가적인 모델 정의
     else:
