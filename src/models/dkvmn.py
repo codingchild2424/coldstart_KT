@@ -1,12 +1,6 @@
-import os
-
-import numpy as np
 import torch
-
 from torch.nn import Module, Parameter, Embedding, Linear
 from torch.nn.init import kaiming_normal_
-from torch.nn.functional import binary_cross_entropy
-from sklearn import metrics
 
 class DKVMN(Module):
     '''
