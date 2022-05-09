@@ -31,6 +31,7 @@ def main(config):
 
     #7. model 기록 저장 위치
     #각 모델별로 따로 기록 저장하도록 폴더 만들어서 관리하기
+    #파일 이름에 auc기록과 시간이 자동으로 기록되도록 넣기
     model_path = '../model_records/' + config.model_fn
 
     #8. model 기록
@@ -40,7 +41,9 @@ def main(config):
     }, model_path)
 
     #9. 시각화 결과물 만들기, + 시각화 만들기 전에 csv 형태로 기록하기
-    get_visualizers(y_true_record, y_score_record,model, model_path, test_loader, device, config)
+    get_visualizers(
+        y_true_record, y_score_record,model, model_path, test_loader, device, config
+    )
 
 #main
 if __name__ == "__main__":

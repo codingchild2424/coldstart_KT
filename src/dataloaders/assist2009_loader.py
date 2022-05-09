@@ -7,7 +7,8 @@ from torch.utils.data import Dataset
 
 # DATASET_DIR = "../datasets/2015_100_skill_builders_main_problems.csv"
 
-# class ASSIST2009(Dataset):
+class ASSIST2009(Dataset):
+    pass
 #     def __init__(self, dataset_dir=DATASET_DIR) -> None:
 #         super().__init__()
 

@@ -1,6 +1,7 @@
 from torch.utils.data import DataLoader, random_split
 from utils import collate_fn
 from dataloaders.assist2015_loader import ASSIST2015
+from dataloaders.assist2009_loader import ASSIST2009
 
 #get_loaders를 따로 만들고, 이 함수를 train에서 불러내기
 def get_loaders(config):
@@ -9,6 +10,27 @@ def get_loaders(config):
     if config.dataset_name == "assist2015":
         dataset = ASSIST2015()
     #-> 추가적인 데이터셋
+    elif config.dataset_name == "assist2009":
+        dataset = ASSIST2009
+        
+    #일단 작동시키고 나중에 모듈화 할 것
+
+    #coldstart 실험에 대한 2009 dataloader 세팅
+    elif config.dataset_name == "coldstart1_assist2009":
+        pass
+    elif config.dataset_name == "coldstart2_assist2009":
+        pass
+    elif config.dataset_name == "coldstart3_assist2009":
+        pass
+
+    #coldstart 실험에 대한 2015 dataloader 세팅
+    elif config.dataset_name == "coldstart1_assist2015":
+        pass
+    elif config.dataset_name == "coldstart2_assist2015":
+        pass
+    elif config.dataset_name == "coldstart3_assist2015":
+        pass
+
     else:
         print("Wrong dataset_name was used...")
 
