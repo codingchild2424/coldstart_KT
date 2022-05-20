@@ -129,4 +129,4 @@ class SAKT_trainer():
         # 가장 최고의 모델 복구    
         self.model.load_state_dict(best_model)
 
-        return y_true_record, y_score_record
+        return y_true_record, y_score_record, highest_auc_score

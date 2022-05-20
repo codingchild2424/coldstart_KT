@@ -16,11 +16,19 @@ DKT, DKVMN, SAKT, SAINT, GKT are targets for research.
     - 해당 값은 1부터 20까지 넣을 수 있음
     - 각 값을 넣어가면서 실험 결과를 확인
 3. epochs은 100까지 실험
+4. 실험방법
+    - 먼저 주피터 노트북으로 데이터셋 생성
+    - 각 모델에 num1부터 num20까지 데이터셋을 넣으며 성능 측정
+    - 모든 모델의 성능 측정이 끝났다면, 다시 주피터 노트북으로 데이터셋 갱신
+    - 이후 반복
 4. 성능 기록
+    - https://docs.google.com/spreadsheets/d/1XMMQEjAPiotXWdfOVNNF5DLAfqi1DCz-5DEcLvK61HY/edit?usp=sharing
 
 ### 실행 명령어 예시
 python train.py --model_fn coldstart1.pth --dataset_name coldstart1_assist2015 --n_epochs 100 --model_name dkt --cold1_stu_num 1
 
+### 실행 명령을 위한 shell(작성 중)
+./coldstart1.sh
 
 
 # Coldstart Prob 2 - 문제 수가 적을 때(수정 중)
