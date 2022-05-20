@@ -30,6 +30,10 @@ python train.py --model_fn coldstart1.pth --dataset_name coldstart1_assist2015 -
 ### 실행 명령을 위한 shell(작성 중)
 ./coldstart1.sh
 
+### 해야 할 일
+1. recoder 함수로 records 파일에 텍스트나 csv로 기록할 수 있게 하기
+2. preprocessor 주피터를 py로 만들어서 자동화할 수 있도록 준비하기
+
 
 # Coldstart Prob 2 - 문제 수가 적을 때(수정 중)
 0. 2009, 2015 둘 다 사용

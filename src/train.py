@@ -5,6 +5,8 @@ from trainers.get_trainers import get_trainers
 from visualizers.get_visualizers import get_visualizers
 from utils import get_optimizers, get_crits
 
+from utils import recoder
+
 from define_argparser import define_argparser
 
 def main(config):
@@ -50,6 +52,7 @@ def main(config):
     #기록해야 할 하이퍼 파라미터
     #config.model_name
     #config.cold1_stu_num
+    recoder(highest_auc_score, config)
 
 #main
 if __name__ == "__main__":
