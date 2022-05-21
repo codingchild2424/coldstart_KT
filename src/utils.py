@@ -79,3 +79,4 @@ def recoder(highest_auc_score, config):
     record_path = config.record_path
     record_file = open(record_path, "a")
     record_file.write(str(highest_auc_score))
+    record_file.write("\n")

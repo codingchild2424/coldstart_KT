@@ -1,9 +1,10 @@
 #!/bin/bash
 
-list="1 2 3 4 5 6 7 8 9 10"
+list="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+data_list="1 2 3 4 5 6 7 8 9 10"
 model_list="dkt dkvmn sakt"
 
-for j in ${list}
+for j in ${data_list}
 do
     echo "---new data ${j}---" >> ../records/coldstart1_record.txt
 
@@ -20,7 +21,7 @@ do
             --dataset_name coldstart1_assist2015 \
             --n_epochs 100 \
             --model_name ${model} \
-            --record_path ../records/coldstart1_record.txt
+            --record_path ../records/coldstart1_record.txt \
             --cold1_stu_num ${i}
 
         done
