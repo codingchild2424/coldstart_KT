@@ -76,6 +76,6 @@ def recoder(highest_auc_score, config):
     #10. highest_auc_score 기록하기
     #기록 위치는 ./records 안에 기록하기
     #기록해야 할 하이퍼 파라미터
-    #config.model_name
-    #config.cold1_stu_num
-    pass
+    record_path = config.record_path
+    record_file = open(record_path, "a")
+    record_file.write(str(highest_auc_score))

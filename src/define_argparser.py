@@ -38,6 +38,7 @@ def define_argparser():
 
     #coldstart argument
     p.add_argument('--cold1_stu_num', type=str, default='1')
+    p.add_argument('--record_path', type=str, default="../records/default_records.txt")
     
     config = p.parse_args()
 
