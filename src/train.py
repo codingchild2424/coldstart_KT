@@ -53,8 +53,9 @@ def main(config, train_loader=None, test_loader=None, num_q=None):
     # )
 
     #10. highest_auc_score 기록하기
-    recoder(highest_auc_score, config)
+    #recoder(highest_auc_score, config)
 
+    return highest_auc_score
 
 #main
 if __name__ == "__main__":
@@ -69,13 +70,20 @@ if __name__ == "__main__":
         random_idx = np.random.choice(len(u_list), config.stu_num, replace=False)
 
     if config.five_fold == True:
+
+        highest_auc_scores = []
+
         for idx in range(5):
             train_loader, test_loader, num_q = get_loaders(config, idx, random_idx)
-            main(
-                config,
-                train_loader,
-                test_loader,
-                num_q
-                )
+            highest_auc_score = main(config, train_loader, test_loader, num_q)
+            highest_auc_scores.append(highest_auc_score)
+
+        #highest_auc_scores 이걸 평균낸 값
+
+        highest_auc_scores_average = sum(highest_auc_scores)/5 #five fold이므로
+
+        recoder(highest_auc_scores_average, config)
+
     else:
-        main(config)
+        highest_auc_score = main(config)
+        recoder(highest_auc_score, config)

@@ -1,7 +1,25 @@
 #!/bin/bash
 
-#python train.py --model_fn model.pth --dataset_name coldstart1  --five_fold True --stu_num 100
+list="100 200 300 400 500 600 700 800 900 1000"
+model_name="dkt dkvmn sakt"
 
+for model in ${model_name}
+do
+    for stu_num in ${list}
+    do
+        echo -n "model_name ${model}; stu_num ${stu_num}" >> ../records/coldstart1_record.tsv
+
+        python \
+        train.py \
+        --model_fn model.pth \
+        --dataset_name coldstart1 \
+        --model_name ${model} \
+        --five_fold True \
+        --stu_num ${stu_num} \
+        --record_path ../records/coldstart1_record.tsv \
+        --n_epochs 100
+    done
+done
 
 # #처음 2000까지는 100단위
 # #2000이후는 500단위
