@@ -36,9 +36,12 @@ def define_argparser():
 
     #gkt argument
 
-    #coldstart argument
-    p.add_argument('--cold1_stu_num', type=str, default='1')
-    p.add_argument('--record_path', type=str, default="../records/default_records.txt")
+    #이걸 전달하기
+    p.add_argument('--stu_num', type=int)
+    p.add_argument('--record_path', type=str, default="../records/default_records.tsv")
+
+    #five_fold
+    p.add_argument('--five_fold', type=bool, default=False)
     
     config = p.parse_args()
 

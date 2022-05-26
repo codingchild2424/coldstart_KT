@@ -6,9 +6,14 @@ from torch.utils.data import Dataset
 
 DATASET_DIR = "../datasets/2015_100_skill_builders_main_problems.csv"
 
-class ASSIST2015(Dataset):
-    def __init__(self, idx=None, dataset_dir=DATASET_DIR) -> None:
+#여기서 해야하는 것은 몇 명인지만을 추리면 됨
+class COLDSTART1(Dataset):
+    def __init__(self, stu_num=None, random_idx=None, dataset_dir=DATASET_DIR) -> None:
         super().__init__()
+
+        #이것으로 학생의 수를 조절하기
+        self.stu_num = stu_num
+        self.random_idx = random_idx
 
         self.dataset_dir = dataset_dir
         
@@ -17,11 +22,6 @@ class ASSIST2015(Dataset):
 
         self.num_u = self.u_list.shape[0]
         self.num_q = self.q_list.shape[0]
-
-        #match_seq_len은 경우에 따라 설정하기 -> 사용하려면 parameter에 seq_len을 추가해야 함
-        #match_seq_len을 거치면, 모든 데이터는 101개로 통일되고, 빈칸인 부분은 -1로 전처리되어있음
-        # self.q_seqs, self.r_seqs = \
-        #     self.match_seq_len(self.q_seqs, self.r_seqs, seq_len) #아래 method를 한번 거치도록 처리
 
         self.len = len(self.q_seqs)
 
@@ -36,8 +36,13 @@ class ASSIST2015(Dataset):
         df = pd.read_csv(self.dataset_dir, encoding="ISO-8859-1")
         df = df[(df["correct"] == 0).values + (df["correct"] == 1).values]
 
+        #여기에서 user들 중에서 self.random_idx(인덱스)에 해당하는 user 추출
         u_list = np.unique(df["user_id"].values) #중복되지 않은 user의 목록
         q_list = np.unique(df["sequence_id"].values) #중복되지 않은 question의 목록
+
+        #stu_num이 있다면, 추출
+        if self.stu_num != None:
+            u_list = u_list[self.random_idx]
 
         u2idx = {u: idx for idx, u in enumerate(u_list)} #중복되지 않은 user에게 idx를 붙여준 딕셔너리
         q2idx = {q: idx for idx, q in enumerate(q_list)} #중복되지 않은 question에 idx를 붙여준 딕셔너리

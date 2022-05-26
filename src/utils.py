@@ -78,5 +78,6 @@ def recoder(highest_auc_score, config):
     #기록해야 할 하이퍼 파라미터
     record_path = config.record_path
     record_file = open(record_path, "a")
+    record_file.write("\t")
     record_file.write(str(highest_auc_score))
     record_file.write("\n")

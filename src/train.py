@@ -1,21 +1,26 @@
+import numpy as np
+
 import torch
-from dataloaders.get_loaders import get_loaders
+from dataloaders.get_loaders import get_loaders, COLDSTART1
 from models.get_models import get_models
 from trainers.get_trainers import get_trainers
 from visualizers.get_visualizers import get_visualizers
-from utils import get_optimizers, get_crits
-
-from utils import recoder
+from utils import get_optimizers, get_crits, recoder
 
 from define_argparser import define_argparser
 
-def main(config):
+def main(config, train_loader=None, test_loader=None, num_q=None):
     #0. device 선언
     device = torch.device('cpu') if config.gpu_id < 0 else torch.device('cuda:%d' % config.gpu_id)
     
     #1. 데이터 받아오기
-    train_loader, test_loader, num_q = get_loaders(config)
-    
+    if config.five_fold == True:
+        train_loader = train_loader
+        test_loader = test_loader
+        num_q = num_q
+    else:
+        train_loader, test_loader, num_q = get_loaders(config)
+
     #2. model 선택
     model = get_models(num_q, device, config)
     
@@ -50,7 +55,27 @@ def main(config):
     #10. highest_auc_score 기록하기
     recoder(highest_auc_score, config)
 
+
 #main
 if __name__ == "__main__":
     config = define_argparser() #define_argparser를 불러옴
-    main(config)
+
+    random_idx = None
+
+    #랜덤 인덱스 생성
+    if config.dataset_name == 'coldstart1':
+        dataset = COLDSTART1()
+        u_list = dataset.u_list
+        random_idx = np.random.choice(len(u_list), config.stu_num, replace=False)
+
+    if config.five_fold == True:
+        for idx in range(5):
+            train_loader, test_loader, num_q = get_loaders(config, idx, random_idx)
+            main(
+                config,
+                train_loader,
+                test_loader,
+                num_q
+                )
+    else:
+        main(config)
