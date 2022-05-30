@@ -8,7 +8,7 @@ DKT, DKVMN, SAKT, SAINT, GKT are targets for research.
 3. made SAKT, SAINT, GKT
 
 # Coldstart Prob 1 - 학생 수가 적을 때(실험 중)
-0. 2009, 2015 둘 다 사용
+0. 2015만 사용함, 2009는 전처리 후 사용
 1. 먼저, preprocessor_2015를 통해, 1명부터 20명까지의 csv를 만듦
     - 단, 모든 모델에 대한 1번의 실험이 끝나기 전까지는 데이터를 새로 만들지 않음
     - 모든 모델에 대한 실험이 끝나면 다시 생성
@@ -20,24 +20,26 @@ DKT, DKVMN, SAKT, SAINT, GKT are targets for research.
     - 먼저 주피터 노트북으로 데이터셋 생성
     - 각 모델에 num1부터 num20까지 데이터셋을 넣으며 성능 측정
     - 모든 모델의 성능 측정이 끝났다면, 다시 주피터 노트북으로 데이터셋 갱신
-    - 이후 반복
-4. 성능 기록
+    - 이후 반복(총 10회)
+4. 최종 성능 기록
+    - records에 txt로 1차 기록
+    - 구글 시트로 옮기기
     - https://docs.google.com/spreadsheets/d/1XMMQEjAPiotXWdfOVNNF5DLAfqi1DCz-5DEcLvK61HY/edit?usp=sharing
+    - 시각화 프로그램으로 그래프 깔끔하게 시각화하기
 
-### 실행 명령어 예시
-python train.py --model_fn coldstart1.pth --dataset_name coldstart1_assist2015 --n_epochs 100 --model_name dkt --cold1_stu_num 1
-
-### 실행 명령을 위한 shell(작성 중)
+### 실행 명령(shell file 활용)
 ./coldstart1.sh
 
-### 해야 할 일
-1. recoder 함수로 records 파일에 텍스트나 csv로 기록할 수 있게 하기
-2. preprocessor 주피터를 py로 만들어서 자동화할 수 있도록 준비하기
-
-
-# Coldstart Prob 2 - 문제 수가 적을 때(수정 중)
-0. 2009, 2015 둘 다 사용
-1. 5 fold cross validation 사용해서 8:2(train:test)로 데이터셋 분류
+# Coldstart Prob 2 - 문제 수가 적을 때(코드 작업 중)
+0. 2015만 사용함, 2009는 전처리 후 사용
+1. 주피터 파일로 데이터에서 100문항 이상 해결한 학생의 결과 확인해보기
+    - 100문항은 없고, 최대 45문항을 해결한 학생이 있음
+2. 40개 이상의 문항을 해결한 학생의 데이터 활용(24명)
+    - 그래야 실제 정답값과 예측값을 비교하여 성능을 측정할 수 있기 때문
+3. 모델에 학생 1명의 시퀀스 데이터를 넣고, (RNN이라면) 각 문항에서 나온 전체 예측값을 가지고, 실제 결과와 비교해보기
+    - 각 문항에서 최종적으로 나온 결과 값은 모든 문항에 대한 확률값을 가지고 있음
+    - 따라서 해당 학생의 실제 결과와 비교하였을 때, 성능을 측정할 수 있음
+    - 이때 확률값이 0.5를 넘으면 정답으로 예측한 것으로 보고, 아니라면 오답으로 예측한 것으로 추정하기
 
 # Coldstart Prob 3 - 정선된 데이터를 활용하여, 각 개념에 대한 문항에 대해 학습
 0. 전처리 된 2009만 사용
