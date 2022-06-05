@@ -1,0 +1,72 @@
+model_name dkt; skill_num 0; opportunity 3	0.5757153312508441
+model_name dkt; skill_num 1; opportunity 3	0.6299683214697284
+model_name dkt; skill_num 2; opportunity 3	0.6698749024952997
+model_name dkt; skill_num 3; opportunity 3
+model_name dkt; skill_num 0; opportunity 4	0.5952222482182699
+model_name dkt; skill_num 1; opportunity 4	0.6151623335094877
+model_name dkt; skill_num 2; opportunity 4	0.6566447758981073
+model_name dkt; skill_num 3; opportunity 4
+model_name dkt; skill_num 0; opportunity 5	0.616569723045291
+model_name dkt; skill_num 1; opportunity 5	0.6127842593606397
+model_name dkt; skill_num 2; opportunity 5	0.666811774174339
+model_name dkt; skill_num 3; opportunity 5
+model_name dkt; skill_num 0; opportunity 6	0.6163705207532633
+model_name dkt; skill_num 1; opportunity 6	0.6142031393143894
+model_name dkt; skill_num 2; opportunity 6	0.6822623519631448
+model_name dkt; skill_num 3; opportunity 6
+model_name dkt; skill_num 0; opportunity 7	0.6229086697013073
+model_name dkt; skill_num 1; opportunity 7	0.6053398863625404
+model_name dkt; skill_num 2; opportunity 7	0.6910904092395678
+model_name dkt; skill_num 3; opportunity 7
+model_name dkt; skill_num 0; opportunity 8	0.6265276907305904
+model_name dkt; skill_num 1; opportunity 8	0.609947762568926
+model_name dkt; skill_num 2; opportunity 8	0.6940585072202854
+model_name dkt; skill_num 3; opportunity 8
+model_name dkvmn; skill_num 0; opportunity 3	0.5550861688515244
+model_name dkvmn; skill_num 1; opportunity 3	0.5838175798853825
+model_name dkvmn; skill_num 2; opportunity 3	0.6879650748994517
+model_name dkvmn; skill_num 3; opportunity 3	0.5588051667282731
+model_name dkvmn; skill_num 0; opportunity 4	0.57818720527814
+model_name dkvmn; skill_num 1; opportunity 4	0.5912305733184681
+model_name dkvmn; skill_num 2; opportunity 4	0.7069301983324693
+model_name dkvmn; skill_num 3; opportunity 4	0.5780762634280026
+model_name dkvmn; skill_num 0; opportunity 5	0.6092283253141616
+model_name dkvmn; skill_num 1; opportunity 5	0.5946189276852091
+model_name dkvmn; skill_num 2; opportunity 5	0.6813394989958995
+model_name dkvmn; skill_num 3; opportunity 5	0.5693751293757225
+model_name dkvmn; skill_num 0; opportunity 6	0.6304433686355602
+model_name dkvmn; skill_num 1; opportunity 6	0.6109884550453673
+model_name dkvmn; skill_num 2; opportunity 6	0.671757397661675
+model_name dkvmn; skill_num 3; opportunity 6	0.5653273068480061
+model_name dkvmn; skill_num 0; opportunity 7	0.6348039001319095
+model_name dkvmn; skill_num 1; opportunity 7	0.6134057869961156
+model_name dkvmn; skill_num 2; opportunity 7	0.679643504530581
+model_name dkvmn; skill_num 3; opportunity 7	0.5833979387489958
+model_name dkvmn; skill_num 0; opportunity 8	0.6381631240032217
+model_name dkvmn; skill_num 1; opportunity 8	0.6108161543689545
+model_name dkvmn; skill_num 2; opportunity 8	0.6788458452762037
+model_name dkvmn; skill_num 3; opportunity 8	0.5776839919624509
+model_name sakt; skill_num 0; opportunity 3	0.5634205836750971
+model_name sakt; skill_num 1; opportunity 3	0.6384018288231139
+model_name sakt; skill_num 2; opportunity 3	0.6503520921674866
+model_name sakt; skill_num 3; opportunity 3	0.5922384684262921
+model_name sakt; skill_num 0; opportunity 4	0.6066587045281518
+model_name sakt; skill_num 1; opportunity 4	0.6364717300403966
+model_name sakt; skill_num 2; opportunity 4	0.6335442737646915
+model_name sakt; skill_num 3; opportunity 4	0.5748603273206123
+model_name sakt; skill_num 0; opportunity 5	0.6235072339147838
+model_name sakt; skill_num 1; opportunity 5	0.6298753074219183
+model_name sakt; skill_num 2; opportunity 5	0.6432983814152602
+model_name sakt; skill_num 3; opportunity 5	0.5844435660183794
+model_name sakt; skill_num 0; opportunity 6	0.622802507704908
+model_name sakt; skill_num 1; opportunity 6	0.6306006145082126
+model_name sakt; skill_num 2; opportunity 6	0.6409622472540437
+model_name sakt; skill_num 3; opportunity 6	0.5813635918168825
+model_name sakt; skill_num 0; opportunity 7	0.6477276349089856
+model_name sakt; skill_num 1; opportunity 7	0.6382744133027717
+model_name sakt; skill_num 2; opportunity 7	0.6534102715065148
+model_name sakt; skill_num 3; opportunity 7	0.5852030997726831
+model_name sakt; skill_num 0; opportunity 8	0.635959504063961
+model_name sakt; skill_num 1; opportunity 8	0.6311025400646121
+model_name sakt; skill_num 2; opportunity 8	0.6444613132076198
+model_name sakt; skill_num 3; opportunity 8	0.5899962022095125

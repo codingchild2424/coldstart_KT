@@ -64,26 +64,43 @@ if __name__ == "__main__":
     random_idx = None
 
     #랜덤 인덱스 생성
-    if config.dataset_name == 'coldstart1':
+    if config.dataset_name == 'coldstart1' or config.dataset_name == 'coldstart1_2009':
         dataset = COLDSTART1()
         u_list = dataset.u_list
         random_idx = np.random.choice(len(u_list), config.stu_num, replace=False)
 
-    if config.five_fold == True:
+        if config.five_fold == True:
 
-        highest_auc_scores = []
+            highest_auc_scores = []
 
-        for idx in range(5):
-            train_loader, test_loader, num_q = get_loaders(config, idx, random_idx)
-            highest_auc_score = main(config, train_loader, test_loader, num_q)
-            highest_auc_scores.append(highest_auc_score)
+            for idx in range(5):
+                train_loader, test_loader, num_q = get_loaders(config, idx, random_idx)
+                highest_auc_score = main(config, train_loader, test_loader, num_q)
+                highest_auc_scores.append(highest_auc_score)
 
-        #highest_auc_scores 이걸 평균낸 값
+            #highest_auc_scores 이걸 평균낸 값
 
-        highest_auc_scores_average = sum(highest_auc_scores)/5 #five fold이므로
+            highest_auc_scores_average = sum(highest_auc_scores)/5 #five fold이므로
 
-        recoder(highest_auc_scores_average, config)
+            recoder(highest_auc_scores_average, config)
 
+    elif config.dataset_name == 'coldstart2':
+
+        if config.five_fold == True:
+
+            highest_auc_scores = []
+
+            for idx in range(5):
+                train_loader, test_loader, num_q = get_loaders(config, idx)
+                highest_auc_score = main(config, train_loader, test_loader, num_q)
+                highest_auc_scores.append(highest_auc_score)
+
+            #highest_auc_scores 이걸 평균낸 값
+
+            highest_auc_scores_average = sum(highest_auc_scores)/5 #five fold이므로
+
+            recoder(highest_auc_scores_average, config)
+        
     else:
         highest_auc_score = main(config)
         recoder(highest_auc_score, config)

@@ -7,9 +7,13 @@ from torch.utils.data import Dataset
 DATASET_DIR = "../datasets/assistment2009_2010/skill_builder_data.csv"
 
 #여기서 해야하는 것은 몇 명인지만을 추리면 됨
-class ASSIST2009(Dataset):
-    def __init__(self, idx=None, dataset_dir=DATASET_DIR) -> None:
+class COLDSTART1(Dataset):
+    def __init__(self, stu_num=None, random_idx=None, dataset_dir=DATASET_DIR) -> None:
         super().__init__()
+
+        #이것으로 학생의 수를 조절하기
+        self.stu_num = stu_num
+        self.random_idx = random_idx
 
         self.dataset_dir = dataset_dir
         
@@ -35,6 +39,10 @@ class ASSIST2009(Dataset):
         #여기에서 user들 중에서 self.random_idx(인덱스)에 해당하는 user 추출
         u_list = np.unique(df["user_id"].values) #중복되지 않은 user의 목록
         q_list = np.unique(df["problem_id"].values) #중복되지 않은 question의 목록
+
+        #stu_num이 있다면, 추출
+        if self.stu_num != None:
+            u_list = u_list[self.random_idx]
 
         u2idx = {u: idx for idx, u in enumerate(u_list)} #중복되지 않은 user에게 idx를 붙여준 딕셔너리
         q2idx = {q: idx for idx, q in enumerate(q_list)} #중복되지 않은 question에 idx를 붙여준 딕셔너리

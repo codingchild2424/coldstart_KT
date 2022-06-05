@@ -24,6 +24,7 @@ class DKT_trainer():
         y_trues, y_scores = [], []
 
         for data in tqdm(train_loader):
+
             self.model.train()
             q_seqs, r_seqs, qshft_seqs, rshft_seqs, mask_seqs = data #collate에 정의된 데이터가 나옴
             q_seqs = q_seqs.to(self.device) #|q_seqs| = (bs, sq) -> [[58., 58., 58., -0., -0., -0., -0., ...], [58., 58., 58., -0., -0., -0., -0., ...]...]
